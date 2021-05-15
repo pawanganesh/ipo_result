@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="companyShareId">Select Company</label>
+        <select name="companyShareId" id="companyShareId" required>
+            {% for company in companies %}
+                <option value="{{ company.id }}">{{ company.name }} - {{ company.scrip }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="boid">16-Digits BOID</label>
+        <input type="number" name="boid" id="boid" required><br>
+        <button type="submit">View Result</button>
+    </form>
+    {% if ipo_result.success == True %}
+    <p style="color: green">{{ ipo_result.message }}</p>
+        {% else %}
+        <p style="color: red">{{ ipo_result.message }}</p>
+    {% endif %}
+{% endblock content %}

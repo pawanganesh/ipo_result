@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{#    <style>#}
+{#        tr:nth-child(even) {#}
+{#            background: #bdb7b7;#}
+{#        }#}
+{#    </style>#}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <br><br><br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>BOID</th>
+            <th>User</th>
+            <th>Action</th>
+        </tr>
+        {% for beneficiary in beneficiaries %}
+            <tr>
+                <td>{{ beneficiary.id }}</td>
+                <td>{{ beneficiary.name }}</td>
+                <td>{{ beneficiary.boid }}</td>
+                <td>{{ beneficiary.user }}</td>
+                <td>
+{#                    <button>#}
+                        <a href="{% url 'ipo:editbeneficiarydetails' beneficiary.id %}">Edit</a>
+{#                    </button>#}
+{#                    <br><br>#}
+{#                    <form method="POST" action="{% url 'ipo:deletebeneficiary' beneficiary.id %}">#}
+{#                        {% csrf_token %}#}
+{#                        <button type="submit">Delete</button>#}
+{#                    </form>#}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

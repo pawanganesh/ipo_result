@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ json_data.message }}
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>SCRIPT</th>
+            <th>isFileUploaded</th>
+        </tr>
+        {% for i in json_data.body %}
+            <tr>
+                <td>{{ i.id }}</td>
+
+                <td>
+                    <a href="{% url 'ipo:results' i.id %}">
+                        {{ i.name }}
+                    </a>
+                </td>
+                <td>{{ i.scrip }}</td>
+                <td>{{ i.isFileUploaded }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock content %}

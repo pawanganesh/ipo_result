@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>Total Count: {{ total_count }}</p>
+    <p>Alloted Count: {{ alloted_count }}</p>
+    <p>Not Alloted Count: {{ notalloted_count }}</p>
+    {% for k,v in ipo_results.items %}
+        {% if v.success == True %}
+            <p style="color: green">{{ k }} => {{ v.message }}</p>
+        {% else %}
+            <p style="color: red">{{ k }} => {{ v.message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endblock content %}
