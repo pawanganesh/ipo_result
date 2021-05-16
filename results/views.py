@@ -9,7 +9,7 @@ from .forms import BeneficiaryDetailsModelForm
 
 
 def companyList_view(request):
-    url = 'https://iporesult.cdsc.com.np/result/companyShares/fileUploaded'
+    url = 'https://tinyurl.com/allcompanylist'
     r = requests.get(url)
     json_data = r.json()
     context = {
@@ -23,14 +23,14 @@ def resultCheck_view(request):
     ipo_result = {}
     if request.POST:
         print(request.POST)
-        URL = 'https://iporesult.cdsc.com.np/result/result/check'
+        URL = 'https://tinyurl.com/companyresultcheck'
         data = {
             "companyShareId": request.POST['companyShareId'],
             "boid": request.POST['boid']
         }
         ipo_result = requests.post(url=URL, json=data).json()
         print(ipo_result)
-    url = 'https://iporesult.cdsc.com.np/result/companyShares/fileUploaded'
+    url = 'https://tinyurl.com/allcompanylist'
     r = requests.get(url)
     companies = r.json()['body']
     context = {
@@ -53,7 +53,7 @@ def results_view(request, companyShareId=None):
         for i in beneficiary_details:
             boids.append(i.boid)
             boid_name[i.boid] = i.name
-        URL = 'https://iporesult.cdsc.com.np/result/result/check'
+        URL = 'https://tinyurl.com/companyresultcheck'
         for boid in boids:
             data = {
                 "companyShareId": companyShareId,
